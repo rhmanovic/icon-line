@@ -1,0 +1,49 @@
+/* App.scss */
+
+html, body {
+  overflow-x: visible;
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  margin-bottom: 90px; /* Adjust this value as needed */
+}
+
+.banner-image {
+  width: 100%; /* Ensures the div takes the full width */
+  height: 200px; /* Fixed height */
+  overflow: hidden; /* Hides parts of the img that overflow the div */
+  margin: 0; /* Remove any margin */
+  padding: 0; /* Remove any padding */
+}
+
+.banner-image img {
+  width: 100%; /* Makes the img width equal to the div width */
+  height: 100%; /* Makes the img height equal to the div height */
+  object-fit: cover; /* Cover fits the content to fill the container while maintaining its aspect ratio */
+  object-position: center; /* Centers the image */
+}
+
+.category-navbar::-webkit-scrollbar {
+  display: none; /* Hides the scrollbar for WebKit browsers like Chrome and Safari */
+}
+
+.category-navbar {
+  position: sticky;
+  top: 0; /* Stick to the top */
+  z-index: 1020;
+  background-color: white; /* Ensures readability */
+}
+
+.custom-divider {
+  border-color: #adadad; /* light gray */
+}
+
+
+
+
+/* .variant-image{
+  max-width: 50px;
+  max-height: 50px;
+} */
