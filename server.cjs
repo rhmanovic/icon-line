@@ -6,9 +6,9 @@ const PORT = process.env.PORT || 3000;
 // Serve static files from the React app's build directory
 app.use(express.static(path.join(__dirname, 'build')));
 
-// The "catchall" handler: for any request that doesn't match one above, send back React's index.html file.
+// The "catchall" handler: for any request that doesn't match one above, send back the index.html file from the main directory.
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(PORT, () => {
