@@ -3,21 +3,21 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node server.cjs",        // Starts the Express server
-    "build": "react-scripts build",    // Builds the React app
-    "serve": "serve -s build",         // Serves the build folder (optional)
+    "start": "node server.cjs",
+    "build": "react-scripts build",
+    "serve": "serve -s build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "express": "^4.18.2",              // Add Express as a dependency
-    "path": "^0.12.7",                 // Add path for managing file and directory paths
-    "react": "^18.2.0",                // React dependencies
+    "express": "^4.18.2",
+    "path": "^0.12.7",
+    "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1"           // The scripts for Create React App
+    "react-scripts": "5.0.1" 
   },
   "devDependencies": {
-    "serve": "^14.0.1"                 // Optional: To serve static files without running the full Express server
+    "serve": "^14.0.1"
   },
   "browserslist": {
     "production": [
