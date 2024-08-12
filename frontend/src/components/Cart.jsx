@@ -122,6 +122,8 @@ function Cart({ cart, language, onIncreaseQuantity, onDecreaseQuantity, onRemove
           </div>
         </div>
       )}
+      {/* Spacer to prevent footer from covering content */}
+      <div style={{ height: '50px' }}></div>
     </div>
   );
 }

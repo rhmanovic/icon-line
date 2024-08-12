@@ -99,6 +99,7 @@ function Menu({ language, categories, products, onAddToCart }) {
         buttonTextColor="black" 
         onAddToCart={onAddToCart}  // Pass the onAddToCart function
       />        
+      
     </div>
   );
 }

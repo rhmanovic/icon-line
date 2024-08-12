@@ -55,6 +55,8 @@ function Categories({ language }) {
           ))}
         </Row>
       )}
+      {/* Spacer to prevent footer from covering content */}
+      <div style={{ height: '50px' }}></div>
     </Container>
   );
 }

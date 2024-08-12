@@ -232,7 +232,11 @@ const ProductPage = ({ language, onAddToCart }) => {
           </Button>
         </Col>
       </Row>
+
+    {/* Spacer to prevent footer from covering content */}
+    <div style={{ height: '100px' }}></div>
     </Container>
+    
   );
 };
 
