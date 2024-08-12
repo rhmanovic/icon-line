@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import "./style/App.css";
+// import "./style/App.css";
 import "./style/Modal.css";
 import "./style/SplashScreen.css";
 
@@ -15,9 +15,9 @@ import Footer from "./components/Footer";
 import Menu from "./components/Menu";
 import Categories from "./components/Categories";
 import CategoryProducts from "./components/CategoryProducts";
-import OrderStatus from "./components/OrderStatus";
+// import OrderStatus from "./components/OrderStatus";
 import SearchOrder from "./components/SearchOrder";
-import OrderStatusAll from "./components/OrderStatusAll";
+// import OrderStatusAll from "./components/OrderStatusAll";
 import Cart from "./components/Cart";
 import AboutUs from "./components/AboutUs";
 import Payment from "./components/Payment";
@@ -260,7 +260,7 @@ function App() {
               }
             />
             <Route path="/about" element={<AboutUs language={language} />} />
-            <Route path="/payment" element={<Payment language={language} />} />
+            <Route path="/payment" element={<Payment language={language} cart={cart} customer={customer} clearCart={clearCart} />} />
             <Route
               path="/cart"
               element={
@@ -293,9 +293,9 @@ function App() {
             />
             <Route path="/product/:productNumber" element={<ProductPage language={language}  onAddToCart={handleAddToCart} />} />
             {/* <Route path="/product/:productId" element={<ProductPage language={language} />} /> */}
-            <Route path="/order-status" element={<OrderStatus language={language} />} />
+            {/* <Route path="/order-status" element={<OrderStatus language={language} />} /> */}
             <Route path="/seach-order" element={<SearchOrder language={language} />} />
-            <Route path="/order-status-all" element={<OrderStatusAll language={language} />} />
+            {/* <Route path="/order-status-all" element={<OrderStatusAll language={language} />} /> */}
             <Route path="/edit-order/:id" element={<EditOrderPage cart={cart} />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
