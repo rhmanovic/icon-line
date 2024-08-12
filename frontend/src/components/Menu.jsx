@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import '../style/CategoryNavbar.css';
-import '../style/App.css'; // Ensure this CSS file includes the banner-image styles
+// import '../style/App.css'; // Ensure this CSS file includes the banner-image styles
 import CategorySections from './CategorySections'; // Import the new component
 
 function Menu({ language, categories, products, onAddToCart }) {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom"; // Import useNavigate
 import { Card, Container, Row, Col } from "react-bootstrap";
-import "../style/App.css";
+// import "../style/App.css";
 import { BASE_URL } from "../config";
 
 function CategoryProducts({ language, onAddToCart, cart }) {

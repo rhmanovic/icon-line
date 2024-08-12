@@ -23,16 +23,16 @@ const Footer = ({ language, setShowMoreModal, setShowLoginModal, setShowAccountM
             <img src="/icon/shopping-bag.png" alt="Icon" className="footer-icon custom-filter" />
             <span className="footer-link-text">{t.cart}</span>
           </div>
-          <div className="col footer-col" onClick={() => navigate('/order-status')}>
+          {/* <div className="col footer-col" onClick={() => navigate('/order-status')}>
             <img src="/icon/invoice.png" alt="Icon" className="footer-icon custom-filter" />
             <span className="footer-link-text">{t.orderStatus}</span>
-          </div>
+          </div> */}
           {/* <div className="col footer-col" onClick={() => navigate('/order-status-all')}>
             <img src="/icon/invoice.png" alt="Icon" className="footer-icon custom-filter" />
             <span className="footer-link-text">{t.orderStatusAll}</span>
           </div> */}
           <div className="col footer-col" onClick={() => navigate('/')}>
-            <img src="/icon/menu.png" alt="Icon" className="footer-icon custom-filter" />
+            <img src="/icon/invoice.png" alt="Icon" className="footer-icon custom-filter" />
             <span className="footer-link-text">{t.menu}</span>
           </div>
           {/* <div className="col footer-col" onClick={() => navigate('/seach-order')}>

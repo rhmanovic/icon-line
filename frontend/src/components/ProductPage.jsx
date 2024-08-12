@@ -4,7 +4,7 @@ import axios from "axios";
 import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
 import { BASE_URL } from "../config";
 import { sleeveLengthOptions, cuffSizeOptions, abayaLengthOptions, shoulderSizeOptions, chestSizeOptions } from "../utils/options";
-import "../style/App.css";
+// import "../style/App.css";
 
 const ProductPage = ({ language, onAddToCart }) => {
   const { productNumber } = useParams();

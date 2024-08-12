@@ -5,7 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Card, Container, Row, Col } from "react-bootstrap";
 import "../style/CategoryNavbar.css";
-import "../style/App.css";
+// import "../style/App.css";
 
 import { BASE_URL } from "../config";
 import { YOUR_MERCHANT_ID } from "../config";
