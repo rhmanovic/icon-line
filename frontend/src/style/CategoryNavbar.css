@@ -1,3 +1,5 @@
+@import "./colors.css";
+
 /* CategoryNavbar.css */
 
 .nav-link {
@@ -15,8 +17,8 @@
 
 .nav-link.active {
     color: white !important; /* White text */
-    background-color: #FD995A !important; /* Orange background */
-    border: 1px solid #FD995A !important; /* Orange border */
+    background-color: var(--vivid-orange) !important; /* Orange background */
+    border: 1px solid var(--vivid-orange) !important; /* Orange border */
 }
 
 .category-navbar {

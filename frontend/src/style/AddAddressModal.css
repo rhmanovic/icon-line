@@ -1,3 +1,5 @@
+@import "./colors.css";
+
 /* AddAddressModal.css */
 .add-address-modal .modal-header {
   text-align: center;
@@ -6,7 +8,7 @@
 
 .add-address-modal .modal-title {
   font-size: 1.5rem;
-  color: #FD995A; /* Vivid orange */
+  color: var(--vivid-orange); /* Vivid orange */
 }
 
 .add-address-modal .form-group {
@@ -15,7 +17,7 @@
 
 .add-address-modal .form-group label {
   font-size: 1rem;
-  color: #3F4850; /* Dark slate gray */
+  color: var(--dark-slate-gray); /* Dark slate gray */
 }
 
 .add-address-modal .form-control,
@@ -33,31 +35,31 @@
   margin: 0 0.25rem; /* Adjust margin for better spacing */
   padding: 0.5rem 1rem; /* Adjust padding for uniform button size */
   background-color: white;
-  border: 1px solid #FD995A; /* Border color */
-  color: #3F4850; /* Text color */
+  border: 1px solid var(--vivid-orange); /* Border color */
+  color: var(--dark-slate-gray); /* Text color */
   transition: all 0.3s ease;
 }
 
 .add-address-modal .address-type-buttons .btn-primary.active {
-  background-color: #FD995A; /* Selected background color */
-  border-color: #FD995A; /* Selected border color */
+  background-color: var(--vivid-orange); /* Selected background color */
+  border-color: var(--vivid-orange); /* Selected border color */
   color: white;
   padding: 0.5rem 1.5rem; /* Increase padding for larger width */
 }
 
 .add-address-modal .form-check-label {
-  color: #3F4850;
+  color: var(--dark-slate-gray);
 }
 
 .add-address-modal .btn-primary {
-  background-color: #FD995A;
-  border-color: #FD995A;
+  background-color: var(--vivid-orange);
+  border-color: var(--vivid-orange);
   color: white;
 }
 
 .add-address-modal .btn-primary:hover {
-  background-color: #e88a4e;
-  border-color: #e88a4e;
+  background-color: var(--hover-orange);
+  border-color: var(--hover-orange);
   color: white;
 }
 

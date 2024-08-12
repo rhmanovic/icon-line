@@ -1,3 +1,5 @@
+@import "./colors.css";
+
 /* OrderStatus.css */
 .order-status-container {
   display: flex;
@@ -10,15 +12,15 @@
 
 .order-status-icon {
   font-size: 4rem;
-  color: #3F4850; /* Dark slate gray */
+  color: var(--dark-slate-gray); /* Dark slate gray */
 }
 
 .btn-primary {
-  background-color: #FD995A;
-  border-color: #FD995A;
+  background-color: var(--vivid-orange);
+  border-color: var(--vivid-orange);
 }
 
 .btn-primary:hover {
-  background-color: #e88a4e;
-  border-color: #e88a4e;
+  background-color: var(--hover-orange);
+  border-color: var(--hover-orange);
 }

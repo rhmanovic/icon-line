@@ -1,3 +1,5 @@
+@import "./colors.css";
+
 .custom-modal {
   position: relative;
   display: flex;
@@ -22,13 +24,13 @@
 
 .addresses-modal .address-icon {
   font-size: 4rem;
-  color: #3F4850; /* Dark slate gray */
+  color: var(--dark-slate-gray); /* Dark slate gray */
   margin-bottom: 20px;
 }
 
 .addresses-modal .address-empty-text {
   font-size: 1.2rem;
-  color: #3F4850; /* Dark slate gray */
+  color: var(--dark-slate-gray); /* Dark slate gray */
   margin-bottom: 20px;
 }
 
@@ -59,7 +61,7 @@
 
 .addresses-modal .address-item-icon {
   font-size: 1.5rem;
-  color: #FD995A; /* Vivid orange */
+  color: var(--vivid-orange); /* Vivid orange */
   margin-right: 5px;
 }
 
@@ -73,7 +75,7 @@
 }
 
 .addresses-modal .default-badge {
-  background-color: #FD995A;
+  background-color: var(--vivid-orange);
   color: white;
   border-radius: 3px;
   padding: 0 5px;
@@ -81,16 +83,16 @@
 }
 
 .addresses-modal .add-address-btn {
-  background-color: #FD995A;
-  border-color: #FD995A;
+  background-color: var(--vivid-orange);
+  border-color: var(--vivid-orange);
   width: 100%;
   font-size: 1.2rem;
   color: white;
 }
 
 .addresses-modal .add-address-btn:hover {
-  background-color: #e88a4e;
-  border-color: #e88a4e;
+  background-color: var(--hover-orange);
+  border-color: var(--hover-orange);
 }
 
 /* Styles for edit and delete icons */
@@ -105,7 +107,7 @@
 .addresses-modal .delete-icon {
   cursor: pointer;
   font-size: 1.2rem;
-  color: #FD995A; /* Vivid orange for delete icon and edit icon */
+  color: var(--vivid-orange); /* Vivid orange for delete icon and edit icon */
 }
 
 

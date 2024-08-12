@@ -1,4 +1,6 @@
-/* App.scss */
+@import "./colors.css";
+
+/* App.css */
 
 html, body {
   overflow-x: visible;
