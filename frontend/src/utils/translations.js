@@ -1,5 +1,17 @@
 const translations = {
   en: {
+    paymentStatus: 'Payment Status',
+    status: 'Status',
+    orderNumber: 'Order Number',
+    amount: 'Amount',
+    created: 'Created',
+    id: 'ID',
+    paymentMethod: 'Payment Method',
+    retryPayment: 'Retry Payment',
+    processing: 'Processing...',
+    orderError: 'Error submitting order. Please try again.',
+    loadingPaymentData: 'Loading payment data...',
+    PaybyKnet: 'Pay by Knet',
     confirmOrder: 'Confirm Order',
     name: 'Name',
     enterName: 'Enter your name',
@@ -144,9 +156,45 @@ const translations = {
     },
     categorySections: {
       addToCart: 'Add to Cart'
+    },
+    productPage: {
+      selectAbayaLength: 'Select Abaya Length',
+      selectShoulderSize: 'Select Shoulder Size',
+      selectChestSize: 'Select Chest Size',
+      selectSleeveLength: 'Select Sleeve Length',
+      selectCuffSize: 'Select Cuff Size',
+      withoutTabby: 'Without Tabby',
+      fullTabby: 'Full Tabby',
+      closed: 'Closed',
+      productName: 'Product Name',
+      sizesInch: 'Sizes (inch)',
+      sleeveLength: 'Sleeve Length',
+      cuffSize: 'Cuff Size',
+      abayaType: 'Abaya Type',
+      abayaLength: 'Abaya Length',
+      shoulderSize: 'Shoulder Size',
+      chestSize: 'Chest Size',
+      customerNote: 'Customer Note',
+      enterCustomerNote: 'Enter your note',
+      quantity: 'Quantity',
+      addToCart: 'Add to Cart',
+      enterValidQuantity: 'Please enter a valid quantity',
+      loading: 'Loading'
     }
   },
   ar: {
+    paymentStatus: 'حالة الدفع',
+    status: 'الحالة',
+    orderNumber: 'رقم الطلب',
+    amount: 'المبلغ',
+    created: 'تاريخ الإنشاء',
+    id: 'ID',
+    paymentMethod: 'طريقة الدفع',
+    retryPayment: 'إعادة المحاولة',
+    processing: 'جارٍ المعالجة...',
+    orderError: 'حدث خطأ أثناء تقديم الطلب. حاول مرة أخرى.',
+    loadingPaymentData: 'جارٍ تحميل بيانات الدفع...',
+    PaybyKnet: 'ادفع Knet',
     confirmOrder: 'تأكيد الطلب',
     name: 'الاسم',
     enterName: 'أدخل اسمك',
@@ -293,7 +341,35 @@ const translations = {
     },
     categorySections: {
       addToCart: 'أضف إلى السلة'
-    }
+    },
+    
+      // Existing translations...
+      productPage: {
+        selectAbayaLength: 'اختاري طول العبايه',
+        selectShoulderSize: 'اختاري مقاس الكتف',
+        selectChestSize: 'اختار مقاس الصدر',
+        selectSleeveLength: 'اختاري طول الكم',
+        selectCuffSize: 'اختاري طول حفرة الكم',
+        withoutTabby: 'بدون طباقي',
+        fullTabby: 'كامل طباقي',
+        closed: 'مقفلة',
+        productName: 'اسم المنتج',
+        sizesInch: 'المقاسات (انش)',
+        sleeveLength: 'طول الكم',
+        cuffSize: 'قياس الحفرة',
+        abayaType: 'نوع العباية',
+        abayaLength: 'طول العباية',
+        shoulderSize: 'حجم الكتف',
+        chestSize: 'حجم الصدر',
+        customerNote: 'ملاحظة العميل',
+        enterCustomerNote: 'أدخل ملاحظتك',
+        quantity: 'الكمية',
+        addToCart: 'أضف إلى السلة',
+        enterValidQuantity: 'يرجى إدخال كمية صالحة',
+        loading: 'جارٍ التحميل'
+      }
+    
+
   }
 };
 
