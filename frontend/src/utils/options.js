@@ -1,7 +1,7 @@
 // src/utils/options.js
 
 export const sleeveLengthOptions = [
-  { value: '', label: 'اخاري طول الكم' },
+  // { value: '', label: 'اخاري طول الكم' },
   { value: '18', label: '18' },
   { value: '18.5', label: '18.5' },
   { value: '19', label: '19' },
@@ -23,7 +23,7 @@ export const sleeveLengthOptions = [
 ];
 
 export const cuffSizeOptions = [
-  { value: '', label: 'اختاري طول حفرة الكم' },
+  // { value: '', label: 'اختاري طول حفرة الكم' },
   { value: '10', label: '10' },
   { value: '10.5', label: '10.5' },
   { value: '11', label: '11' },
@@ -59,7 +59,7 @@ export const cuffSizeOptions = [
 ];
 
 export const abayaLengthOptions = [
-  { value: '', label: 'اختاري طول العبايه' },
+  // { value: '', label: 'اختاري طول العبايه' },
   { value: '48', label: '48' },
   { value: '48.5', label: '48.5' },
   { value: '49', label: '49' },
@@ -97,7 +97,7 @@ export const abayaLengthOptions = [
 ];
 
 export const shoulderSizeOptions = [
-  { value: '', label: 'اختاري مقاس الكتف' },
+  // { value: '', label: 'اختاري مقاس الكتف' },
   { value: '13', label: '13' },
   { value: '13.5', label: '13.5' },
   { value: '14', label: '14' },
@@ -112,7 +112,7 @@ export const shoulderSizeOptions = [
 ];
 
 export const chestSizeOptions = [
-  { value: '', label: 'اختار مقاس الصدر' },
+  // { value: '', label: 'اختار مقاس الصدر' },
   { value: '38', label: '38' },
   { value: '38.5', label: '38.5' },
   { value: '39', label: '39' },
