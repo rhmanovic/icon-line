@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
 import { BASE_URL } from "../config";
+import translations from "../utils/translations";
 import { sleeveLengthOptions, cuffSizeOptions, abayaLengthOptions, shoulderSizeOptions, chestSizeOptions } from "../utils/options";
-// import "../style/App.css";
 
-const ProductPage = ({ language, onAddToCart }) => {
+const ProductPage = ({ language = 'EN', onAddToCart }) => {
   const { productNumber } = useParams();
   const [product, setProduct] = useState(null);
   const [customerNote, setCustomerNote] = useState("");
@@ -18,6 +18,9 @@ const ProductPage = ({ language, onAddToCart }) => {
   const [shoulderSize, setShoulderSize] = useState("");
   const [chestSize, setChestSize] = useState("");
 
+  const t = language === 'EN' ? translations.en.productPage : translations.ar.productPage || translations.en.productPage;
+  const currency = language === 'EN' ? translations.en.currency : translations.ar.currency;
+
   useEffect(() => {
     axios
       .get(`${BASE_URL}/api/products/number/${productNumber}`)
@@ -27,47 +30,13 @@ const ProductPage = ({ language, onAddToCart }) => {
       .catch((error) => console.error("Error fetching product:", error));
   }, [productNumber]);
 
-  const handleAddToCart = () => {
-    if (product && quantity) {
-      const note = `
-        ملاحظة العميل: ${customerNote}
-        طول الكم: ${sleeveLength}
-        قياس الحفرة: ${cuffSize}
-        نوع العباية: ${abayaType}
-        طول العباية: ${abayaLength}
-        حجم الكتف: ${shoulderSize}
-        حجم الصدر: ${chestSize}
-      `;
-
-      const cartItem = {
-        productId: product._id,
-        productNumber: product.product_number,
-        productName: language === 'EN' ? product.product_name_en : product.product_name_ar,
-        product_name_en: product.product_name_en,
-        product_name_ar: product.product_name_ar,
-        warranty: product.warranty,
-        variantId: null,
-        variantName: null,
-        brandName: product.brand,
-        productImage: product.product_image,
-        price: parseFloat(product.sale_price),
-        quantity: parseInt(quantity, 10),
-        customerNote: note.trim(),
-        sleeveLength,
-        cuffSize,
-        abayaType,
-        abayaLength,
-        shoulderSize,
-        chestSize,
-      };
-      onAddToCart(cartItem);
-    } else {
-      alert("Please enter a valid quantity.");
-    }
-  };
+  const translatedOptions = (options, firstOptionTranslation) => [
+    { value: '', label: firstOptionTranslation },
+    ...options
+  ];
 
   if (!product) {
-    return <p>Loading...</p>;
+    return <p>{t.loading}...</p>;
   }
 
   return (
@@ -81,37 +50,31 @@ const ProductPage = ({ language, onAddToCart }) => {
             style={{
               width: '100%',
               height: 'auto',
-              aspectRatio: '9 / 14', // Set aspect ratio to 9:14
+              aspectRatio: '9 / 14',
               objectFit: 'cover'
             }}
           />
           <h1 className="mt-3">{language === 'EN' ? product.product_name_en : product.product_name_ar}</h1>
-          <h2>{product.sale_price} K.D</h2>
-
-          <Form.Group className="mt-3">
-            <Form.Label>{language === 'EN' ? "Customer Note" : "ملاحظة العميل"}</Form.Label>
-            <Form.Control
-              as="textarea"
-              rows={3}
-              placeholder={language === 'EN' ? "Enter your note" : "أدخل ملاحظتك"}
-              value={customerNote}
-              onChange={(e) => setCustomerNote(e.target.value)}
-              style={{ minHeight: '100px' }}
-            />
-          </Form.Group>
+          <h2>{product.sale_price} {currency}</h2>
+          <div
+            className="my-4"
+            dangerouslySetInnerHTML={{
+              __html: language === 'EN' ? product.description_en : product.description_ar,
+            }}
+          ></div>
 
           {product.options && (
             <>
               <Row className="mt-3">
                 <Col xs={6}>
                   <Form.Group>
-                    <Form.Label>{language === 'EN' ? "Sizes (inch)" : "المقاسات (انش)"}</Form.Label>
+                    <Form.Label>{t.sizesInch}</Form.Label>
                     <Form.Control
                       as="select"
                       value={abayaLength}
                       onChange={(e) => setAbayaLength(e.target.value)}
                     >
-                      {abayaLengthOptions.map(option => (
+                      {translatedOptions(abayaLengthOptions, t.selectAbayaLength).map(option => (
                         <option key={option.value} value={option.value}>
                           {option.label}
                         </option>
@@ -124,7 +87,7 @@ const ProductPage = ({ language, onAddToCart }) => {
                       value={shoulderSize}
                       onChange={(e) => setShoulderSize(e.target.value)}
                     >
-                      {shoulderSizeOptions.map(option => (
+                      {translatedOptions(shoulderSizeOptions, t.selectShoulderSize).map(option => (
                         <option key={option.value} value={option.value}>
                           {option.label}
                         </option>
@@ -137,7 +100,7 @@ const ProductPage = ({ language, onAddToCart }) => {
                       value={chestSize}
                       onChange={(e) => setChestSize(e.target.value)}
                     >
-                      {chestSizeOptions.map(option => (
+                      {translatedOptions(chestSizeOptions, t.selectChestSize).map(option => (
                         <option key={option.value} value={option.value}>
                           {option.label}
                         </option>
@@ -145,37 +108,40 @@ const ProductPage = ({ language, onAddToCart }) => {
                     </Form.Control>
                   </Form.Group>
                 </Col>
-                <Col xs={6} style={{ textAlign: 'right' }} dir="rtl">
+                <Col xs={6}>
                   <Form.Group>
-                    <Form.Label>{language === 'EN' ? "Sizes (inch)" : "المقاسات (انش)"}</Form.Label>
+                    <Form.Label>{t.sizesInch}</Form.Label>
                     <br />
-                    <Form.Check
-                      type="radio"
-                      label={language === 'EN' ? "Without Tabby" : "بدون طباقي"}
-                      name="abayaType"
-                      value="withoutTabby"
-                      checked={abayaType === "withoutTabby"}
-                      onChange={(e) => setAbayaType(e.target.value)}
-                      inline
-                    />
-                    <Form.Check
-                      type="radio"
-                      label={language === 'EN' ? "Full Tabby" : "كامل طباقي"}
-                      name="abayaType"
-                      value="fullTabby"
-                      checked={abayaType === "fullTabby"}
-                      onChange={(e) => setAbayaType(e.target.value)}
-                      inline
-                    />
-                    <Form.Check
-                      type="radio"
-                      label={language === 'EN' ? "Closed" : "مسكره"}
-                      name="abayaType"
-                      value="closed"
-                      checked={abayaType === "closed"}
-                      onChange={(e) => setAbayaType(e.target.value)}
-                      inline
-                    />
+                    <div className="custom-radio">
+                      <input
+                        type="radio"
+                        id="withoutTabby"
+                        name="abayaType"
+                        value="withoutTabby"
+                        checked={abayaType === "withoutTabby"}
+                      />
+                      <label className="mx-2" htmlFor="withoutTabby">{t.withoutTabby}</label>
+                    </div>
+                    <div className="custom-radio">
+                      <input
+                        type="radio"
+                        id="fullTabby"
+                        name="abayaType"
+                        value="fullTabby"
+                        checked={abayaType === "fullTabby"}
+                      />
+                      <label className="mx-2" htmlFor="fullTabby">{t.fullTabby}</label>
+                    </div>
+                    <div className="custom-radio">
+                      <input
+                        type="radio"
+                        id="closed"
+                        name="abayaType"
+                        value="closed"
+                        checked={abayaType === "closed"}
+                      />
+                      <label className="mx-2" htmlFor="closed">{t.closed}</label>
+                    </div>
                   </Form.Group>
                 </Col>
               </Row>
@@ -183,13 +149,13 @@ const ProductPage = ({ language, onAddToCart }) => {
               <Row className="mt-3">
                 <Col>
                   <Form.Group>
-                    <Form.Label>{language === 'EN' ? "Sleeve Length (Optional)" : "طول الكم (إختياري)"}</Form.Label>
+                    <Form.Label>{t.sleeveLengthOptional}</Form.Label>
                     <Form.Control
                       as="select"
                       value={sleeveLength}
                       onChange={(e) => setSleeveLength(e.target.value)}
                     >
-                      {sleeveLengthOptions.map(option => (
+                      {translatedOptions(sleeveLengthOptions, t.selectSleeveLength).map(option => (
                         <option key={option.value} value={option.value}>
                           {option.label}
                         </option>
@@ -199,13 +165,13 @@ const ProductPage = ({ language, onAddToCart }) => {
                 </Col>
                 <Col>
                   <Form.Group>
-                    <Form.Label>{language === 'EN' ? "Cuff Size (Optional)" : "قياس الحفرة (إختياري)"}</Form.Label>
+                    <Form.Label>{t.cuffSizeOptional}</Form.Label>
                     <Form.Control
                       as="select"
                       value={cuffSize}
                       onChange={(e) => setCuffSize(e.target.value)}
                     >
-                      {cuffSizeOptions.map(option => (
+                      {translatedOptions(cuffSizeOptions, t.selectCuffSize).map(option => (
                         <option key={option.value} value={option.value}>
                           {option.label}
                         </option>
@@ -216,27 +182,39 @@ const ProductPage = ({ language, onAddToCart }) => {
               </Row>
             </>
           )}
-
           <Form.Group className="mt-3">
-            <Form.Label>{language === 'EN' ? "Quantity" : "الكمية"}</Form.Label>
+            <Form.Label>{t.customerNote}</Form.Label>
             <Form.Control
-              type="number"
-              value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
-              min="1"
-              step="1"
+              as="textarea"
+              rows={3}
+              placeholder={t.enterCustomerNote}
+              value={customerNote}
+              onChange={(e) => setCustomerNote(e.target.value)}
+              style={{ minHeight: '100px' }}
             />
           </Form.Group>
-          <Button className="mt-3" onClick={handleAddToCart}>
-            {language === 'EN' ? "Add to Cart" : "أضف إلى السلة"}
+          <Form.Group className="mt-3">
+            <Form.Label>{t.quantity}</Form.Label>
+            <div className="item-quantity d-flex align-items-center mt-2">
+              <button className="btn btn-outline-secondary p-1 px-2 mx-1" onClick={() => setQuantity(quantity - 1)}>-</button>
+              <input 
+                type="number" 
+                className="form-control quantity-input mx-3" 
+                value={quantity} 
+                onChange={(e) => setQuantity(Number(e.target.value))}
+                style={{ width: '100px', maxWidth: '100px', textAlign: 'center' }}
+              />
+              <button className="btn btn-outline-secondary p-1 px-2 mx-1" onClick={() => setQuantity(quantity + 1)}>+</button>
+            </div>
+          </Form.Group>
+          <Button className="mt-3" onClick={() => alert('Add to Cart')}>
+            {t.addToCart}
           </Button>
         </Col>
       </Row>
 
-    {/* Spacer to prevent footer from covering content */}
-    <div style={{ height: '100px' }}></div>
+      <div style={{ height: '100px' }}></div>
     </Container>
-    
   );
 };
 
