@@ -35,6 +35,45 @@ const ProductPage = ({ language = 'EN', onAddToCart }) => {
     ...options
   ];
 
+  const handleAddToCart = () => {
+    if (product && quantity) {
+      const note = `
+        ${t.customerNote}: ${customerNote}
+        ${t.sleeveLength}: ${sleeveLength}
+        ${t.cuffSize}: ${cuffSize}
+        ${t.abayaType}: ${abayaType}
+        ${t.abayaLength}: ${abayaLength}
+        ${t.shoulderSize}: ${shoulderSize}
+        ${t.chestSize}: ${chestSize}
+      `;
+
+      const cartItem = {
+        productId: product._id,
+        productNumber: product.product_number,
+        productName: language === 'EN' ? product.product_name_en : product.product_name_ar,
+        product_name_en: product.product_name_en,
+        product_name_ar: product.product_name_ar,
+        warranty: product.warranty,
+        variantId: null,
+        variantName: null,
+        brandName: product.brand,
+        productImage: product.product_image,
+        price: parseFloat(product.sale_price),
+        quantity: parseInt(quantity, 10),
+        customerNote: note.trim(),
+        sleeveLength,
+        cuffSize,
+        abayaType,
+        abayaLength,
+        shoulderSize,
+        chestSize,
+      };
+      onAddToCart(cartItem);
+    } else {
+      alert(t.enterValidQuantity);
+    }
+  };
+
   if (!product) {
     return <p>{t.loading}...</p>;
   }
@@ -119,6 +158,7 @@ const ProductPage = ({ language = 'EN', onAddToCart }) => {
                         name="abayaType"
                         value="withoutTabby"
                         checked={abayaType === "withoutTabby"}
+                        onChange={(e) => setAbayaType(e.target.value)}
                       />
                       <label className="mx-2" htmlFor="withoutTabby">{t.withoutTabby}</label>
                     </div>
@@ -129,6 +169,7 @@ const ProductPage = ({ language = 'EN', onAddToCart }) => {
                         name="abayaType"
                         value="fullTabby"
                         checked={abayaType === "fullTabby"}
+                        onChange={(e) => setAbayaType(e.target.value)}
                       />
                       <label className="mx-2" htmlFor="fullTabby">{t.fullTabby}</label>
                     </div>
@@ -139,6 +180,7 @@ const ProductPage = ({ language = 'EN', onAddToCart }) => {
                         name="abayaType"
                         value="closed"
                         checked={abayaType === "closed"}
+                        onChange={(e) => setAbayaType(e.target.value)}
                       />
                       <label className="mx-2" htmlFor="closed">{t.closed}</label>
                     </div>
@@ -196,18 +238,18 @@ const ProductPage = ({ language = 'EN', onAddToCart }) => {
           <Form.Group className="mt-3">
             <Form.Label>{t.quantity}</Form.Label>
             <div className="item-quantity d-flex align-items-center mt-2">
-              <button className="btn btn-outline-secondary p-1 px-2 mx-1" onClick={() => setQuantity(quantity - 1)}>-</button>
+              <button className="btn btn-outline-secondary p-1 px-2 mx-1" onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}>-</button>
               <input 
                 type="number" 
                 className="form-control quantity-input mx-3" 
                 value={quantity} 
-                onChange={(e) => setQuantity(Number(e.target.value))}
+                onChange={(e) => setQuantity(Math.max(Number(e.target.value), 1))}
                 style={{ width: '100px', maxWidth: '100px', textAlign: 'center' }}
               />
               <button className="btn btn-outline-secondary p-1 px-2 mx-1" onClick={() => setQuantity(quantity + 1)}>+</button>
             </div>
           </Form.Group>
-          <Button className="mt-3" onClick={() => alert('Add to Cart')}>
+          <Button className="mt-3" onClick={handleAddToCart}>
             {t.addToCart}
           </Button>
         </Col>
