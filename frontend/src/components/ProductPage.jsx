@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Form, Carousel } from "react-bootstrap";
 import { BASE_URL } from "../config";
 import translations from "../utils/translations";
 import { sleeveLengthOptions, cuffSizeOptions, abayaLengthOptions, shoulderSizeOptions, chestSizeOptions } from "../utils/options";
@@ -82,17 +82,37 @@ const ProductPage = ({ language = 'EN', onAddToCart }) => {
     <Container className="main mt-5">
       <Row>
         <Col xs={12} md={6}>
-          <Card.Img
-            src={product.product_image ? `${BASE_URL}${product.product_image}` : "https://via.placeholder.com/150x265"}
-            alt={language === 'EN' ? product.product_name_en : product.product_name_ar}
-            className="rounded"
-            style={{
-              width: '100%',
-              height: 'auto',
-              aspectRatio: '9 / 14',
-              objectFit: 'cover'
-            }}
-          />
+          {product.product_images && product.product_images.length > 0 ? (
+            <Carousel>
+              {product.product_images.map((image, index) => (
+                <Carousel.Item key={index}>
+                  <Card.Img
+                    src={`${BASE_URL}${image}`}
+                    alt={`Product image ${index + 1}`}
+                    className="rounded"
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                      aspectRatio: '9 / 14',
+                      objectFit: 'cover'
+                    }}
+                  />
+                </Carousel.Item>
+              ))}
+            </Carousel>
+          ) : (
+            <Card.Img
+              src={product.product_image ? `${BASE_URL}${product.product_image}` : "https://via.placeholder.com/150x265"}
+              alt={language === 'EN' ? product.product_name_en : product.product_name_ar}
+              className="rounded"
+              style={{
+                width: '100%',
+                height: 'auto',
+                aspectRatio: '9 / 14',
+                objectFit: 'cover'
+              }}
+            />
+          )}
           <h1 className="mt-3">{language === 'EN' ? product.product_name_en : product.product_name_ar}</h1>
           <h2>{product.sale_price} {currency}</h2>
           <div
