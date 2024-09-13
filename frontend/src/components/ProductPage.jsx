@@ -37,15 +37,22 @@ const ProductPage = ({ language = 'EN', onAddToCart }) => {
 
   const handleAddToCart = () => {
     if (product && quantity) {
-      const note = `
+      let note = `
         ${t.customerNote}: ${customerNote}
         ${t.sleeveLength}: ${sleeveLength}
         ${t.cuffSize}: ${cuffSize}
         ${t.abayaType}: ${abayaType}
-        ${t.abayaLength}: ${abayaLength}
         ${t.shoulderSize}: ${shoulderSize}
         ${t.chestSize}: ${chestSize}
+        ${t.abayaLength}: ${abayaLength}
       `;
+
+      // Conditionally add abayaLength to the note if standard_sizes is true
+      if (product.standard_sizes) {
+        note += `
+          ${t.abayaLength}: ${abayaLength}
+        `;
+      }
 
       const cartItem = {
         productId: product._id,
@@ -64,7 +71,7 @@ const ProductPage = ({ language = 'EN', onAddToCart }) => {
         sleeveLength,
         cuffSize,
         abayaType,
-        abayaLength,
+        abayaLength, // This is always included, but the value will only be used if applicable
         shoulderSize,
         chestSize,
       };
@@ -73,6 +80,7 @@ const ProductPage = ({ language = 'EN', onAddToCart }) => {
       alert(t.enterValidQuantity);
     }
   };
+
 
   if (!product) {
     return <p>{t.loading}...</p>;
@@ -121,6 +129,23 @@ const ProductPage = ({ language = 'EN', onAddToCart }) => {
               __html: language === 'EN' ? product.description_en : product.description_ar,
             }}
           ></div>
+
+          {product.standard_sizes && (
+            <Form.Group className="mt-3">
+              <Form.Label>{t.sizesInch}</Form.Label>
+              <Form.Control
+                as="select"
+                value={abayaLength}
+                onChange={(e) => setAbayaLength(e.target.value)}
+              >
+                {translatedOptions(abayaLengthOptions, t.selectAbayaLength).map(option => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </Form.Control>
+            </Form.Group>
+          )}
 
           {product.options && (
             <>
